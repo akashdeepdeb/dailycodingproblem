@@ -1,11 +1,17 @@
 def multiplyallbutone(arr):
-	mul = 1
-	for num in arr:
-		mul *= num
-	return [int(mul/i) for i in arr]
+	sol = [1 for _ in range(len(arr))]
+	prod = 1
+	for i in range(len(arr)):
+		sol[i] *= prod
+		prod *= arr[i]
+	prod = 1
+	for i in range(len(arr)-1, -1, -1):
+		sol[i] *= prod
+		prod *= arr[i]
+	return sol
 
 if __name__ == '__main__':
-	tests = [[1,2,3,4,5],[1,2,3],[0,2,3,4,5]]
+	tests = [[1,2,3,4], [1,2,3,4,5],[1,2,3],[0,2,3,4,5]]
 	for t in tests:
 		print(multiplyallbutone(t))
 
